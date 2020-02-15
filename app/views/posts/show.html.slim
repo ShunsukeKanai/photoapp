@@ -4,7 +4,7 @@ h1 投稿詳細
   = link_to '一覧', posts_path, class: 'nav-link'
 
 .m-3
-  .card
+  .card.mb-3
     .card-header 
       | ユーザーネームとアイコン
     .card-body
@@ -12,3 +12,5 @@ h1 投稿詳細
         | #{@post.description}
         p 
           small #{@post.created_at}
+
+  = link_to '編集', edit_post_path, class: 'btn btn-primary mr-3'
