@@ -14,3 +14,4 @@ h1 投稿詳細
           small #{@post.created_at}
 
   = link_to '編集', edit_post_path, class: 'btn btn-primary mr-3'
+  = link_to '削除', @post, method: :delete, data: { confirm: '投稿を削除します。よろしいですか？'}, class: 'btn btn-danger'
