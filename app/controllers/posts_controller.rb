@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   def index
+    @posts = Post.all
   end
 
   def show
@@ -10,7 +11,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new
+    post = Post.new(post_params)
     post.save
     redirect_to posts_url, notice: "投稿を完了しました"
   end
@@ -20,7 +21,7 @@ class PostsController < ApplicationController
 
   private
 
-  def task_params
+  def post_params
     params.require(:post).permit(:description)
   end
 
