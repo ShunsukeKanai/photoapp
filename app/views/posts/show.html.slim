@@ -1,2 +1,14 @@
-h1 Posts#show
-p Find me in app/views/posts/show.html.slim
+h1 投稿詳細
+
+.nav.justify-content-end
+  = link_to '一覧', posts_path, class: 'nav-link'
+
+.m-3
+  .card
+    .card-header 
+      | ユーザーネームとアイコン
+    .card-body
+      h5.card-title 
+        | #{@post.description}
+        p 
+          small #{@post.created_at}
