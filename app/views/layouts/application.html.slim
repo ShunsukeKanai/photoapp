@@ -2,14 +2,13 @@ doctype html
 html
   head
     title
-      | Photoapp
+      | Landscape Photos
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    .app-title.navbar.navbar-expand-md.navbar-light.bg-right
-      .navbar-brand Landscape Photos
+    = render 'layouts/navbar'
     .container
       - if flash.notice.present?
         .alert.alert-success= flash.notice
