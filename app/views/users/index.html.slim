@@ -1,0 +1,14 @@
+h1 ユーザー一覧
+
+- @users.each do |user|
+  .card.mb-3
+    .row.no-gutters
+      .col-md-2
+        <img src="..." class="card-img" alt="...">
+      .col-md-10
+        .card-body
+          h5.card-title 
+            = user.email
+          p.card-text This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          p.card-text
+            small.text-muted Last updated 3 mins ago
