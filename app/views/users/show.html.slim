@@ -1,2 +1,12 @@
 h1 ユーザーページ
 = @user.email
+
+.row.mt-3.mr-1
+  - @posts.each do |post|
+    .col-md-4.mt-1
+      .card
+        imag.card-img-top
+          = image_tag post.image.to_s
+        .card-body
+          p.card-text 
+            = link_to post.description, post
