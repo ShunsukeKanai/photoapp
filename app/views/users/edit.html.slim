@@ -2,7 +2,8 @@ h1 プロフィールの編集
 
 = form_with model: @user, local: true do |f|
   .form-group
-    = f.label :avatar
+    = f.label "画像をアップロード"
+    = f.file_field :avatar
 
   .form-group
     = f.label :username
