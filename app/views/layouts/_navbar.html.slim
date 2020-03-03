@@ -7,8 +7,17 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="/">投稿一覧 <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="/users">ユーザー一覧</a>
-      <a class="nav-item nav-link" href="/users/sign_in">ログイン</a>
-      <a class="nav-item nav-link" href="/users/sign_up">新規登録</a>
     </div>
   </div>
+  .collapse.navbar-collapse.justify-content-end
+    ul.navbar-nav.align-items-center
+      - if user_signed_in?
+        = link_to user_path(current_user), class: "avatar-user-name nav-link mr-3 p-0"
+          .nav-username.d-none.d-sm-flex
+            .nav-username-text
+              = current_user.username
+
+      - else
+        <a class="nav-item nav-link" href="/users/sign_in">ログイン</a>
+        <a class="nav-item nav-link" href="/users/sign_up">新規登録</a>
 </nav>
