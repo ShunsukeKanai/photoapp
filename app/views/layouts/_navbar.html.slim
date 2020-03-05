@@ -13,6 +13,11 @@ nav.navbar.navbar-expand.navbar-light.bg-light
           .nav-username.d-none.d-sm-flex
             .nav-username-text
               = current_user.username
+        li.nav-item
+          = link_to new_post_path, class: "btn btn-primary" do
+            i.far.fa-edit.mr-1 投稿
+
+
       - else
         <a class="nav-item nav-link" href="/users/sign_in">ログイン</a>
         <a class="nav-item nav-link" href="/users/sign_up">新規登録</a>
