@@ -13,4 +13,4 @@ h1 投稿一覧
           = image_tag post.image.to_s
         .card-body
           p.card-text 
-            = link_to post.description, post
+            = link_to post.description, post_path(post)
