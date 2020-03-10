@@ -7,22 +7,26 @@ nav.navbar.navbar-expand.navbar-light.bg-light
       a.nav-item.nav-link.active href="/" 投稿一覧
       a.nav-item.nav-link href="/users" ユーザー一覧
   .collapse.navbar-collapse.justify-content-end
-    ul.navbar-nav.align-items-center
-      - if user_signed_in?
-        - if current_user.avatar?
-          = link_to image_tag(current_user.avatar.url, size: "50x50", class: "avatar-img rounded-circle z-depth-0",alt: "nav avatar image"), user_path(current_user), class: "nav-link p-0"
+      ul.navbar-nav.align-items-center
+        - if user_signed_in?
+          .dropdown
+            button.btn.btn-secondary.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+              - if current_user.avatar?
+                = link_to image_tag(current_user.avatar.url, size: "50x50", class: "avatar-img rounded-circle z-depth-0",alt: "nav avatar image"), user_path(current_user), class: "nav-link p-0"
+              - else
+                = link_to image_tag("no_user.jpg", size: "50x50", class: "avatar-img rounded-circle z-depth-0", alt: "nav avatar image"), user_path(current_user), class: "nav-link p-0"
+              = link_to user_path(current_user), class: "nav-link mr-3 p-0"
+                .nav-username.d-none.d-sm-flex
+                  .nav-username-text
+                    = current_user.username
+            .dropdown-menu
+              = link_to 'マイページ', user_path(current_user), class: 'dropdown-item'
+              = link_to 'プロフィールの編集', edit_user_path(current_user), class: 'dropdown-item'
+              .dropdown-divider
+              = link_to "ログアウト", destroy_user_session_path, :method => :delete, class: 'dropdown-item'
+          li.nav-item
+            = link_to new_post_path, class: "btn btn-primary" do
+              i.far.fa-edit.mr-1 投稿
         - else
-          = link_to image_tag("no_user.jpg", size: "50x50", class: "avatar-img rounded-circle z-depth-0", alt: "nav avatar image"), user_path(current_user), class: "nav-link p-0"
-
-        = link_to user_path(current_user), class: "avatar-user-name nav-link mr-3 p-0"
-          .nav-username.d-none.d-sm-flex
-            .nav-username-text
-              = current_user.username
-        li.nav-item
-          = link_to new_post_path, class: "btn btn-primary" do
-            i.far.fa-edit.mr-1 投稿
-
-
-      - else
-        <a class="nav-item nav-link" href="/users/sign_in">ログイン</a>
-        <a class="nav-item nav-link" href="/users/sign_up">新規登録</a>
+          <a class="nav-item nav-link" href="/users/sign_in">ログイン</a>
+          <a class="nav-item nav-link" href="/users/sign_up">新規登録</a>
