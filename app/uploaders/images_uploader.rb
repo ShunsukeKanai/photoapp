@@ -4,7 +4,7 @@ class ImagesUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # ここで投稿の画像のリサイズされる大きさが決まる
-  process resize_to_limit: [400, 400]
+  process resize_to_fill: [1080, 1080]
   # 要検討
   version :thumb do
     process resize_to_fill: [200, 200, 'Center']
