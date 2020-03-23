@@ -1,13 +1,9 @@
 h1 投稿一覧
 
-
-
 .row.mt-3.mr-1
   - @posts.each do |post|
-    .col-md-4.mt-1
-      .card
-        imag.card-img-top
-          = image_tag post.image.to_s
-        .card-body
-          p.card-text 
-            = link_to post.description, post_path(post)
+    .post-card.col-6.col-sm-4
+      .post-card-img
+        = link_to image_tag(post.image.url, class: "img-fluid", alt: "post image"), post_path(post)
+      .post-card-footer.d-flex.align-items-center
+        = link_to post.description, post_path(post)
