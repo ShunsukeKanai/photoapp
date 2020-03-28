@@ -14,9 +14,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = current_user.posts.new(post_params)
-    post.save
-    redirect_to posts_url, notice: "投稿を完了しました"
+    @post = current_user.posts.new(post_params)
+    if @post.save
+      redirect_to posts_url, notice: "投稿を完了しました"
+    else
+      render :new
+    end
   end
 
   def edit
