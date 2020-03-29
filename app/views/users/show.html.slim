@@ -1,13 +1,19 @@
-h1 ユーザーページ
-- if @user.avatar?
-  = image_tag(@user.avatar.url, size: "250x250", class: "rounded-circle z-depth-0", alt: "avatar image")
-- else
-  = image_tag("no_user.jpg", size: "250x250", class: "rounded-circle z-depth-0", alt: "avatar image")
-
-= @user.username
-= @user.introduction
-
-- if current_user.id == @user.id
-  = link_to '編集', edit_user_path, class: 'btn btn-primary mr-3'
+.m-md-5
+  .row
+    .col-4
+      - if @user.avatar?
+        = image_tag(@user.avatar.url, size: "250x250", class: "rounded-circle z-depth-0", alt: "avatar image")
+      - else
+        = image_tag("no_user.jpg", size: "250x250", class: "rounded-circle z-depth-0", alt: "avatar image")
+    .col-8
+      .mt-md-5
+        .font-weight-bold.h3
+          = @user.username
+        - if current_user.id != @user.id
+          フォローする
+      .mt-4
+        = @user.introduction
+      .mt-4
+        フォロー　10　フォロワー　10
 
 = render partial: 'posts/post_panel', locals: {posts: @posts}
