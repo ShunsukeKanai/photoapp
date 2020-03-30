@@ -9,7 +9,7 @@
       .mt-md-5
         .font-weight-bold.h3
           = @user.username
-        - if current_user.id != @user.id
+        - if current_user.present? && current_user.id != @user.id
           フォローする
       .mt-4
         = @user.introduction
