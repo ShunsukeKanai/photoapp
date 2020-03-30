@@ -4,7 +4,7 @@
   <div class="form-group mt-5">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
-
+    
     <div class="field border-bottom">
       <%= f.label :username %><br />
       <%= f.text_field :username, autofocus: true, class:"form-control border-0" %>
