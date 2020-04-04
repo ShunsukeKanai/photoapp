@@ -1,20 +1,24 @@
-h1 プロフィールの編集
+- provide(:title, "プロフィールの編集")
+.col-md-6.offset-md-3.mt-3
+  h2.font-weight-bold.text-center プロフィールの編集
+  .form-group.mt-5
+    = form_with model: @user, local: true do |f|
+      .form-group
+        = f.label "画像をアップロード"
+        = f.file_field :avatar
 
-= form_with model: @user, local: true do |f|
-  .form-group
-    = f.label "画像をアップロード"
-    = f.file_field :avatar
+          <div class="field border-bottom">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control border-0" %>
+          </div>
 
-  .form-group
-    = f.label :username
-    = f.text_area :username, rows: 1, class: 'form-control'
+      .field.border-bottom.mt-2
+        = f.label :username
+        = f.text_area :username, rows: 1, class: 'form-control border-0'
 
-  .form-group
-    = f.label :email
-    = f.text_area :email, rows: 1, class: 'form-control'
-
-  .form-group
-    = f.label :introduction
-    = f.text_area :introduction, rows: 3, class: 'form-control'
-
-  = f.submit '保存', class: 'btn btn-primary'
+      .field.border-bottom.mt-2
+        = f.label :introduction
+        = f.text_area :introduction, rows: 3, class: 'form-control border-0'
+      
+      .action.mt-3.text-center
+       = f.submit '更新', class: 'btn btn-primary'
