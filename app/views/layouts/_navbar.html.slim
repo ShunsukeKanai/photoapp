@@ -21,12 +21,13 @@ nav.navbar.navbar-expand.navbar-light.bg-light
                     = current_user.username
             .dropdown-menu
               = link_to 'マイページ', user_path(current_user), class: 'dropdown-item'
-              = link_to 'プロフィールの編集', edit_user_registration_path, class: 'dropdown-item'
+              = link_to 'プロフィールの編集', edit_user_path(current_user), class: 'dropdown-item'
+              = link_to 'アカウント設定', edit_user_registration_path, class: 'dropdown-item'
               .dropdown-divider
               = link_to "ログアウト", destroy_user_session_path, :method => :delete, class: 'dropdown-item'
           li.nav-item
             = link_to new_post_path, class: "btn btn-primary" do
               i.far.fa-edit.mr-1 投稿
         - else
-          <a class="nav-item nav-link" href="/users/sign_in">ログイン</a>
-          <a class="nav-item nav-link" href="/users/sign_up">新規登録</a>
+          = link_to 'ログイン', new_user_session_path, class: 'nav-item nav-link'
+          = link_to '新規登録', new_user_registration_path, class: 'nav-item nav-link'
