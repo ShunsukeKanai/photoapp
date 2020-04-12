@@ -8,4 +8,8 @@ class Post < ApplicationRecord
     return self.image.variant(resize: '50x50')
   end
 
+  def user
+    return User.find_by(id: self.user_id)
+  end
+
 end
