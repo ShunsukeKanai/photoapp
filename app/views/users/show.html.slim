@@ -8,7 +8,7 @@
     .col-8
       .mt-md-5
         .font-weight-bold.h3
-          = @user.username
+          = @user.name
         - if current_user.present? && current_user.id != @user.id
         フォローする
       .mt-4

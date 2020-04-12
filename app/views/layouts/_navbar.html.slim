@@ -18,7 +18,7 @@ nav.navbar.navbar-expand.navbar-light.bg-light
                   - else
                     = link_to image_tag("no_user.jpg", size: "50x50", class: "avatar-img rounded-circle z-depth-0", alt: "nav avatar image"), user_path(current_user), class: "nav-link p-0"
                 .m-3            
-                  = current_user.username
+                  = current_user.name
                 .mt-3.mr-3.dropdown-toggle
             .dropdown-menu
               = link_to 'マイページ', user_path(current_user), class: 'dropdown-item'
