@@ -12,7 +12,7 @@ h1 ユーザー一覧
       .col-md-10
         .card-body
           h4.card-title 
-            = link_to user.username, user_path(user), class: "text-dark"
+            = link_to user.name, user_path(user), class: "text-dark"
           p.card-text 
             = user.introduction
 
