@@ -15,5 +15,8 @@
         = @user.introduction
       .mt-4
         フォロー　10　フォロワー　10
-
-= render partial: 'posts/post_panel', locals: {posts: @posts}
+.row.mt-3.mr-1
+  - @posts.each do |post|
+    .card.col-md-4
+      = render partial: 'posts/post_header', locals: {post: post}
+      = render partial: 'posts/post_image', locals: {post: post}
