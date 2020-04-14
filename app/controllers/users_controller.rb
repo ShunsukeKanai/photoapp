@@ -16,12 +16,12 @@ class UsersController < ApplicationController
   def update
     user = current_user
     user.update!(user_params)
-    redirect_to user_path, notice: "#{user.username}さんのプロフィールを更新しました"
+    redirect_to user_path, notice: "#{user.name}さんのプロフィールを更新しました"
   end
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :introduction, :avatar)
+    params.require(:user).permit(:name, :email, :introduction, :avatar)
   end
 
 end
