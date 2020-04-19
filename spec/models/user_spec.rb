@@ -5,12 +5,12 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.create(:user)
   end
 
-  it 'ユーザー登録が可能である' do
+  it 'user modelが有効な状態かテスト' do
     expect(@user).to be_valid
   end
 
-  describe 'カラムごとの検証' do
-    describe 'name' do
+  describe 'カラムごとのテスト' do
+    describe 'nameに関するテスト' do
       it 'nameがないユーザーを許可しない' do
         @user.name = nil
         @user.valid?
@@ -38,7 +38,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    describe 'email' do
+    describe 'emailに関するテスト' do
       it 'emailがないユーザーを許可しない' do
         @user.email = nil
         @user.valid?
@@ -69,16 +69,11 @@ RSpec.describe User, type: :model do
       end
     end
 
-    describe 'password' do
+    describe 'passwordに関するテスト' do
       it 'passwordが6文字未満のユーザーを許可しない' do
         @user.password = 'a' * 5
         @user.valid?
         expect(@user.errors).to be_added(:password, :too_short, count: 6)
-      end
-
-      it 'passwordが６文字以上のユーザーを許可する' do
-        @user.password = @user.password_confirmation = 'a' * 6
-        expect(@user).to be_valid
       end
 
       it 'passwordとpasswordconfirmationが一致しない場合許可しない' do
