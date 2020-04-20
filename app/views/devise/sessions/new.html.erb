@@ -3,7 +3,9 @@
   <h2 class="font-weight-bold text-center">ログイン</h2>
   <div class="form-group mt-5">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <p>パスワード間違ってます的なやつ表示機能</p>
+      <% if alert %>
+        <p class="alert alert-error"><i class="fas fa-exclamation-triangle"></i><%= alert %></p>
+      <% end %>
       <div class="field border-bottom">
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control border-0" %>
