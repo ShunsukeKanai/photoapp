@@ -1,0 +1,22 @@
+.m-md-5
+  .row
+    .col-4
+      - if @user.avatar?
+        = image_tag(@user.avatar.url, size: "250x250", class: "rounded-circle z-depth-0", alt: "avatar image")
+      - else
+        = image_tag("no_user.jpg", size: "250x250", class: "rounded-circle z-depth-0", alt: "avatar image")
+    .col-8
+      .mt-md-5
+        .font-weight-bold.h3
+          = @user.name
+        - if current_user.present? && current_user.id != @user.id
+        フォローする
+      .mt-4
+        = @user.introduction
+      .mt-4
+        フォロー　10　フォロワー　10
+.row.mt-3.mr-1
+  - @posts.each do |post|
+    .card.col-md-4
+      = render partial: 'posts/post_header', locals: {post: post}
+      = render partial: 'posts/post_image', locals: {post: post}

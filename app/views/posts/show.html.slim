@@ -1,7 +1,6 @@
-h1 投稿詳細
-
-.nav.justify-content-end
-  = link_to '一覧', posts_path, class: 'nav-link'
+.post-card.col-6.col-sm-4
+  .post-card-img
+    = image_tag(@post.image.url, class: "img-fluid", alt: "post image")
 
 .m-3
   .card.mb-3
@@ -12,6 +11,7 @@ h1 投稿詳細
         | #{@post.description}
         p 
           small #{@post.created_at}
-
+- if current_user.id == @post.user_id
   = link_to '編集', edit_post_path, class: 'btn btn-primary mr-3'
   = link_to '削除', @post, method: :delete, data: { confirm: '投稿を削除します。よろしいですか？'}, class: 'btn btn-danger'
+
