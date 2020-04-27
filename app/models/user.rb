@@ -6,7 +6,6 @@ class User < ApplicationRecord
                                   foreign_key: 'follower_id',
                                   dependent: :destroy
   mount_uploader :avatar, AvatarUploader
-
   validates :name, presence: true, uniqueness: { case_sensitive: true },
                    length: { maximum: 30 }
   validates :introduction, length: { maximum: 140 }
