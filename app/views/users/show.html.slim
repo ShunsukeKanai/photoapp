@@ -9,8 +9,7 @@
       .mt-md-5
         .font-weight-bold.h3
           = @user.name
-        - if current_user.present? && current_user.id != @user.id
-          |フォローする
+        = render 'follow_form'
       .mt-4
         = @user.introduction
       .mt-4.row
