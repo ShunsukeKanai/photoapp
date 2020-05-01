@@ -13,8 +13,15 @@
         フォローする
       .mt-4
         = @user.introduction
-      .mt-4
-        フォロー　10　フォロワー　10
+      .mt-4.row
+        .col-3
+          p
+            = @user.following.count
+            |フォロー中  
+        .col-3
+          p
+            = @user.followers.count
+            |フォロワー
 .row.mt-3.mr-1
   - @posts.each do |post|
     .card.col-md-4
