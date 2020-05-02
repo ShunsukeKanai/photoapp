@@ -1,0 +1,17 @@
+<% provide(:title, @title) %>
+
+- @users.each do |user|
+  .card.mb-2
+    .row
+      .col-md-2
+        .m-md-4
+          - if user.avatar?
+            = link_to image_tag(user.avatar.url, size: "100x100", class: "rounded-circle z-depth-0", alt: "avatar image"), user_path(user)
+          - else
+            = link_to image_tag("no_user.jpg", size: "100x100", class: "rounded-circle z-depth-0", alt: "avatar image"), user_path(user)
+      .col-md-10
+        .card-body
+          h4.card-title 
+            = link_to user.name, user_path(user), class: "text-dark"
+          p.card-text 
+            = user.introduction
