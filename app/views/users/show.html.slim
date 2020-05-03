@@ -6,7 +6,7 @@
       - else
         = image_tag("no_user.jpg", size: "250x250", class: "rounded-circle z-depth-0", alt: "avatar image")
     .col-8
-      .mt-md-5
+      .mt-md-5.row
         .font-weight-bold.h3
           = @user.name
         = render 'follow_form'
