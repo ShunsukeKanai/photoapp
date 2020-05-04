@@ -24,3 +24,15 @@ User.create!(name: "guest",
                confirmed_at: Date.today
               )
 end
+
+# サンプル投稿作成
+users = User.order(:created_at).take(21)
+
+200.times do |n|
+  image = open("#{Rails.root}/db/images/image#{rand(1..22)}.jpg")
+  description = Faker::JapaneseMedia::SwordArtOnline.location
+  users[n % 21].posts.create!(image: image,
+                              description: description,
+                              created_at: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now)
+                             )
+end
