@@ -6,21 +6,17 @@
       - else
         = image_tag("no_user.jpg", size: "250x250", class: "rounded-circle z-depth-0", alt: "avatar image")
     .col-8
-      .mt-md-5.row
+      .mt-5.row
         .font-weight-bold.h3
           = @user.name
         = render 'follow_form'
-      .mt-4
+      .mt-4.row
         = @user.introduction
       .mt-4.row
-        .col-3
-          p
-            = @user.following.count
-            |フォロー中  
-        .col-3
-          p
-            = @user.followers.count
-            |フォロワー
+        = link_to "#{@user.following.count}フォロー中", following_user_path(@user), class: "text-dark" 
+        .ml-3
+          = link_to "#{@user.followers.count}フォロワー", followers_user_path(@user), class: "text-dark"
+
 .row.mt-3.mr-1
   - @posts.each do |post|
     .card.col-md-4
