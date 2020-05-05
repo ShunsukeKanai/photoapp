@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: %[show]
 
   def index
-    @posts = Post.all.page(params[:page]).per(9)
+    @q = Post.all.ransack(params[:q])
+    @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(9)
     @users = User.all
   end
 
