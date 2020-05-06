@@ -9,6 +9,7 @@ h1.text-center ユーザー一覧
 .pagination.justify-content-center.mt-3
   = paginate @users
 
+.offset-md-3
 - @users.each do |user|
   .card.mb-2
     .row
@@ -18,12 +19,14 @@ h1.text-center ユーザー一覧
             = link_to image_tag(user.avatar.url, size: "100x100", class: "rounded-circle z-depth-0", alt: "avatar image"), user_path(user)
           - else
             = link_to image_tag("no_user.jpg", size: "100x100", class: "rounded-circle z-depth-0", alt: "avatar image"), user_path(user)
-      .col-md-10
+      .col-md-8
         .card-body
-          h4.card-title 
-            = link_to user.name, user_path(user), class: "text-dark"
-          p.card-text 
+          h3.card-title 
+            = link_to user.name, user_path(user), class: "text-dark font-weight-bold"
+          p.card-text
             = user.introduction
+      .col-md-2.card-body
+        = render 'follow_form', user: user
 
 .pagination.justify-content-center.mt-3
   = paginate @users
