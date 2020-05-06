@@ -1,5 +1,8 @@
 h1 ユーザー一覧
 
+.pagination.justify-content-center.mt-3
+  = paginate @users
+
 - @users.each do |user|
   .card.mb-2
     .row
@@ -16,3 +19,5 @@ h1 ユーザー一覧
           p.card-text 
             = user.introduction
 
+.pagination.justify-content-center.mt-3
+  = paginate @users
