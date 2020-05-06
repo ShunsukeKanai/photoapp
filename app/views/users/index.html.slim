@@ -1,4 +1,10 @@
-h1 ユーザー一覧
+h1.text-center ユーザー一覧
+.col-md-6.offset-md-3.mt-3
+  = search_form_for @q, class: 'mb-3 row' do |f|
+    .form-group.col-8.offset-md-2
+      = f.search_field :name_cont, class: 'form-control', placeholder: 'ユーザーを検索'
+    .form-group
+      = f.submit class: 'btn btn-outline-primary ml-2'
 
 .pagination.justify-content-center.mt-3
   = paginate @users
