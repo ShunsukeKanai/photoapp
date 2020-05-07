@@ -1,17 +1,15 @@
-.post-card.col-6.col-sm-4
-  .post-card-img
-    = image_tag(@post.image.url, class: "img-fluid", alt: "post image")
+.card.mt-5.col-10.offset-md-1.mb-5
+  = render partial: 'post_header', locals: {post: @post}
+  = render partial: 'post_image', locals: {post: @post}
+  .list-group.list-group-flush
+    li.list-group-item
+      .h3
+        = @post.description
+      p.small
+        = @post.created_at.to_s(:datetime)
+    li.list-group-item 
+      - if current_user.id == @post.user_id
+        = link_to '編集', edit_post_path, class: 'btn btn-primary mr-3'
+        = link_to '削除', @post, method: :delete, data: { confirm: '投稿を削除します。よろしいですか？'}, class: 'btn btn-danger'
 
-.m-3
-  .card.mb-3
-    .card-header 
-      | ユーザーネームとアイコン
-    .card-body
-      h5.card-title 
-        | #{@post.description}
-        p 
-          small #{@post.created_at}
-- if current_user.id == @post.user_id
-  = link_to '編集', edit_post_path, class: 'btn btn-primary mr-3'
-  = link_to '削除', @post, method: :delete, data: { confirm: '投稿を削除します。よろしいですか？'}, class: 'btn btn-danger'
 
