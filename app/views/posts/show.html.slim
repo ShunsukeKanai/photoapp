@@ -12,4 +12,9 @@
         = link_to '編集', edit_post_path, class: 'btn btn-primary mr-3'
         = link_to '削除', @post, method: :delete, data: { confirm: '投稿を削除します。よろしいですか？'}, class: 'btn btn-danger'
 
+    = form_with(model: [@post, @comment], local: true) do |f|
+      .form-group
+        = f.text_area :content, rows: 5, class: 'form-control', placeholder: 'コメントを入力'
+      = f.submit '投稿', class: 'btn btn-primary'
+
 
