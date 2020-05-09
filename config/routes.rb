@@ -11,8 +11,11 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  resources :posts
+  resources :posts do
+    resources :comments, only: %i[create]
+  end
   resources :users
   resources :relationships, only: %i[create destroy]
+
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

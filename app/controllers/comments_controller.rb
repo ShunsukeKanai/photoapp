@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @comment = @comments.build(comment_params)
+    @comment = @post.comments.build(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
       flash[:success] = "コメントしました"
@@ -13,11 +13,10 @@ class CommentsController < ApplicationController
     end
   end
 
-  end
-
   private
 
   def comment_params
     params.require(:comment).permit(:content)
   end
 end
+
