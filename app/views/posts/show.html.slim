@@ -28,6 +28,9 @@
                     = comment.content
                   .ml-2.small
                     = comment.post.created_at.to_s(:datetime)
+                    - if comment.user == current_user
+                      = link_to 'コメント削除', post_comment_path(@post, comment), method: :delete, data: { confirm: 'コメントを削除します。よろしいですか？'}, class: 'ml-2 text-dark'
+                      
 
   .card-body 
     = form_with(model: [@post, @comment], local: true) do |f|
