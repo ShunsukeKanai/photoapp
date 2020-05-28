@@ -1,9 +1,14 @@
-h1 投稿を編集
+.col-md-6.offset-md-3.mt-3
+  h2.font-weight-bold.text-center 投稿を編集
+  .mt-5
+    - if @post.errors.present?
+      ul#error_explanetion
+        - @post.errors.full_messages.each do |message|
+          li = message
 
-.nav.justify-content-end
-  = link_to '一覧', posts_path, class: 'nav-link'
-
-= form_with model: @post, local: true do |f|
-  .form-group
-    = f.text_area :description, rows: 5, class: 'form-control', id: 'post_description'
-  = f.submit '投稿', class: 'btn btn-primary'
+    = form_with model: @post, local: true do |f|
+      = f.file_field :image, class: 'form-control border-0', id: 'post_image'
+      .field.border-bottom.mt-2
+        = f.text_area :description, rows: 3, class: 'form-control border-0', id: 'post_description', placeholder: 'キャプションを入力'
+      .actions.mt-3.text-center
+        = f.submit '投稿', class: 'btn btn-primary'

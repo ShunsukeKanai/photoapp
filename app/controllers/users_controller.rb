@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    @q = User.all.ransack(params[:q])
+    @users = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(9)
   end
 
   def show
@@ -17,6 +18,22 @@ class UsersController < ApplicationController
     user = current_user
     user.update!(user_params)
     redirect_to user_path, notice: "#{user.name}さんのプロフィールを更新しました"
+  end
+
+  def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following
+    #@users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    #@users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
   end
 
   private

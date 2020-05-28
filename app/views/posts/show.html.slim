@@ -1,17 +1,42 @@
-.post-card.col-6.col-sm-4
-  .post-card-img
-    = image_tag(@post.image.url, class: "img-fluid", alt: "post image")
+.card.mt-5.col-10.offset-md-1.mb-5
+  = render partial: 'post_header', locals: {post: @post}
+  = render partial: 'post_image', locals: {post: @post}
+  .list-group.list-group-flush
+    li.list-group-item
+      .h3
+        = @post.description
+      p.small
+        = @post.created_at.to_s(:datetime)
+    li.list-group-item 
+      - if current_user.id == @post.user_id
+        = link_to '編集', edit_post_path, class: 'btn btn-primary mr-3'
+        = link_to '削除', @post, method: :delete, data: { confirm: '投稿を削除します。よろしいですか？'}, class: 'btn btn-danger'
+      - if @comments
+        - @comments.each_with_index do |comment, index|
+          - if @comments.count != index
+            li.list-group-item
+              .row
+                .mt-2
+                  - if comment.user.avatar?
+                    = link_to image_tag(comment.user.avatar.url, size: "50x50", class: "rounded-circle z-depth-0", alt: "avatar image"), user_path(comment.user)
+                  - else
+                    = link_to image_tag("no_user.jpg", size: "50x50", class: "rounded-circle z-depth-0", alt: "avatar image"), user_path(comment.user)
+                .
+                  .ml-2
+                    = link_to comment.user.name, user_path(comment.user), class: 'text-dark'
+                  .ml-2
+                    = comment.content
+                  .ml-2.small
+                    = comment.post.created_at.to_s(:datetime)
+                    - if comment.user == current_user
+                      = link_to 'コメント削除', post_comment_path(@post, comment), method: :delete, data: { confirm: 'コメントを削除します。よろしいですか？'}, class: 'ml-2 text-dark'
+                      
 
-.m-3
-  .card.mb-3
-    .card-header 
-      | ユーザーネームとアイコン
-    .card-body
-      h5.card-title 
-        | #{@post.description}
-        p 
-          small #{@post.created_at}
-- if current_user.id == @post.user_id
-  = link_to '編集', edit_post_path, class: 'btn btn-primary mr-3'
-  = link_to '削除', @post, method: :delete, data: { confirm: '投稿を削除します。よろしいですか？'}, class: 'btn btn-danger'
+  .card-body 
+    = form_with(model: [@post, @comment], local: true) do |f|
+      .form-group
+        = f.text_area :content, rows: 5, class: 'form-control mt-3', placeholder: 'コメントを入力'
+      = f.submit '投稿', class: 'btn btn-primary'
+
+
 

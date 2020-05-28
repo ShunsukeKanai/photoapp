@@ -2,12 +2,15 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: %[show]
 
   def index
-    @posts = Post.all
+    @q = Post.all.ransack(params[:q])
+    @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(9)
     @users = User.all
   end
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments
+    @comment = @post.comments.build
   end
 
   def new
@@ -28,9 +31,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    post = Post.find(params[:id])
-    post.update!(post_params)
-    redirect_to posts_url, notice: "投稿を更新しました"
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to posts_url, notice: "投稿を編集しました"
+    else
+      render :edit
+    end
   end
 
   def destroy

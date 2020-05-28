@@ -1,6 +1,19 @@
-h1 投稿一覧
+
+h1.text-center 投稿一覧
+.col-md-6.offset-md-3.mt-3
+  = search_form_for @q, class: 'mb-3 row' do |f|
+    .form-group.col-8.offset-md-2
+      = f.search_field :description_cont, class: 'form-control', placeholder: '投稿を検索'
+    .form-group
+      = f.submit class: 'btn btn-outline-primary ml-2'
+.pagination.justify-content-center.mt-3
+  = paginate @posts
+
 .row.mt-3.mr-1
   - @posts.each do |post|
     .card.col-md-4
       = render partial: 'post_header', locals: {post: post}
       = render partial: 'post_image', locals: {post: post}
+
+.pagination.justify-content-center.mt-3
+  = paginate @posts
